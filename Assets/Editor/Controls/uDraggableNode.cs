@@ -427,7 +427,7 @@ namespace uNodeEditor
 				return;
 			}
 
-			//DrawConnect();
+
 
 		}
 

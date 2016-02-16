@@ -213,13 +213,14 @@ namespace uNodeEditor
 		void OnGUI()
 		{
 
-			ClearMouse();
+			
 
 			// 更新
 			Color colorBackup = GUI.color;
 			if (Event.current.type != EventType.Layout &&
 				Event.current.type != EventType.Repaint)
 			{
+				ClearMouse();
 
 				colorBackup = GUI.color;
 

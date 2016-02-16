@@ -85,11 +85,41 @@ namespace uNodeEditor
 			//this.nodeList.ForEach(node => node.OnPaint());
 
 
+			
+
 			// 範囲選択描画
 			GUIHelper.Fill(m_SelectedArea, new Color(0.5f, 0.5f, 0.5f, 0.5f));
 			Rect pos = m_SelectedArea;
 			GUIHelper.DrawRect(pos, Color.white, 2);
+			//DrawConnect();
+			// 簡易図表示
+			if (mouseData.IsDrag(MouseButton.Middle))
+			{
+				float scale = 0.3f;
+				float cx = position.width / 2 - (position.width * scale)/2;
+				float cy = position.height / 2 - (position.height * scale) / 2;
+				foreach (var node in nodeList)
+				{
+					Rect r = node.windowRect;
 
+					r.x *= scale;
+					r.x += cx;
+					r.y *= scale;
+					r.y +=  cy;
+					r.width *= scale;
+					r.height *= scale;
+					GUIHelper.DrawRect(r, Color.red);
+				}
+
+				Vector2 winpos = Grid.GridZoomCenterPoint;
+				winpos.x = cx;
+				winpos.y = cy;
+				Rect window = new Rect(winpos, new Vector2(position.width * scale, position.height * scale));
+				GUIHelper.DrawRect(window, Color.white);
+			}
+
+
+			
 		}
 
 
@@ -164,6 +194,7 @@ namespace uNodeEditor
 			EditorGUILayout.EndVertical();
 
 
+			
 		}
 
 		#region 範囲選択関連
