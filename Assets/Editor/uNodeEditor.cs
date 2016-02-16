@@ -258,6 +258,14 @@ namespace uNodeEditor
 
 		}
 
+		void ClearSelectedNodes()
+		{
+			foreach (var node in selectedNodeList)
+			{
+				node.Active = false;
+			}
+			selectedNodeList.Clear();
+		}
 
 		/// <summary>
 		/// 範囲選択
@@ -320,7 +328,11 @@ namespace uNodeEditor
 				//	gridContorol.GridZoomCenterPoint = selectedNode.windowRect.center;
 				//}
 
-
+				var find = selectedNodeList.Find(n => n.handle == selectedNode.handle);
+				if (find == null || selectedNode == null)
+				{
+					ClearSelectedNodes();
+				}
 				foreach(var node in selectedNodeList)
 				{
 					isOverrapped = true;
@@ -350,11 +362,7 @@ namespace uNodeEditor
 				if (bOtherNodeSelect)
 				{
 					isOverrapped = false;
-					foreach (var node in selectedNodeList)
-					{
-						node.Active = false;
-					}
-					selectedNodeList.Clear();
+					ClearSelectedNodes();
 				}
 				//-------------------------------
 			}
