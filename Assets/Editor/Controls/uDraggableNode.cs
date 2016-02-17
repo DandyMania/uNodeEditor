@@ -339,10 +339,13 @@ namespace uNodeEditor
 			
 			//float add = 0.1f;
 			//GUI.color = Color.HSVToRGB(add * (handle % (1.0f / add)), 0.8f, 0.6f);
+			//GUI.color = EditorGUIUtility.HSVToRGB(add * (handle % (1.0f / add)), 0.8f, 0.6f);
 			//GUI.color = new Color(GUI.color.r, GUI.color.g, GUI.color.b, 1.0f);
-			GUI.color = new Color(0.4f, 0.6f, 1.0f);
+			GUI.color = new Color(0.4f, 0.6f, 1.0f,1.0f);
 			GUI.Label(title, NodeName, style);
 
+			//float centeroffset = (NodeName.Length/2 * style.fontSize);
+			//GUIHelper.DrawText(new Vector2(title.width / 2 - centeroffset, 0), NodeName, Color.white);
 
 			// コネクタ名
 			foreach (var box in connectBoxList)
@@ -447,8 +450,7 @@ namespace uNodeEditor
 
 				string nodeStyle = "flow node 0";
 				if (Active) nodeStyle += " on";
-
-				GUI.color = new Color(GUI.color.r, GUI.color.g, GUI.color.b, 1.0f);
+				GUI.color = new Color(1, 1, 1, 1);
 				GUIStyle style = new GUIStyle(nodeStyle);
 				windowRect = GUI.Window(handle, windowRect, windowFunc, "", style);
 
@@ -542,7 +544,8 @@ namespace uNodeEditor
 
 				// コネクトボックスの色
 				float add = 0.15f;
-				Color col = Color.HSVToRGB(add * (index % (1.0f / add)), 0.3f, 1.0f);
+				//Color col = Color.HSVToRGB(add * (index % (1.0f / add)), 0.3f, 1.0f);
+				Color col = EditorGUIUtility.HSVToRGB(add * (index % (1.0f / add)), 0.3f, 1.0f);
 				if (box.active) col = Color.red;
 
 				box.color = col;
