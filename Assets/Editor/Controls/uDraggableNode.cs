@@ -544,8 +544,11 @@ namespace uNodeEditor
 
 				// コネクトボックスの色
 				float add = 0.15f;
-				//Color col = Color.HSVToRGB(add * (index % (1.0f / add)), 0.3f, 1.0f);
+#if (UNITY_5_3)
+				Color col = Color.HSVToRGB(add * (index % (1.0f / add)), 0.3f, 1.0f);
+#else
 				Color col = EditorGUIUtility.HSVToRGB(add * (index % (1.0f / add)), 0.3f, 1.0f);
+#endif
 				if (box.active) col = Color.red;
 
 				box.color = col;
